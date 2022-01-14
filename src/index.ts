@@ -11,6 +11,7 @@ import * as dotenv from 'dotenv'
 import { PSP } from "./engine/PSP";
 import { SOS } from "./engine/SOS";
 import { GAS } from "./engine/GAS";
+import { WTF } from "./engine/WTF";
 
 dotenv.config();
 require('log-timestamp');
@@ -88,9 +89,15 @@ async function main() {
   // ======= UNCOMMENT FOR SOS CLAIM AND TRANSFER ==========
 
   // ======= UNCOMMENT FOR GASDAO CLAIM AND TRANSFER ==========
-  const gasTokenAddress = '0x6bba316c48b49bd1eac44573c5c871ff02958469'
-  const engine: Base = new GAS(provider, walletExecutor.address, RECIPIENT, gasTokenAddress);
-  // ======= UNCOMMENT FOR SOS CLAIM AND TRANSFER ==========
+  // const gasTokenAddress = '0x6bba316c48b49bd1eac44573c5c871ff02958469'
+  // const engine: Base = new GAS(provider, walletExecutor.address, RECIPIENT, gasTokenAddress);
+  // ======= UNCOMMENT FOR GASDAO CLAIM AND TRANSFER ==========
+
+  // ======= UNCOMMENT FOR WTF CLAIM AND TRANSFER ==========
+  const wtfTokenAddress = '0xa68dd8cb83097765263adad881af6eed479c4a33'
+  const referrer = '0x49E53Fb3d5bf1532fEBAD88a1979E33A94844d1d'
+  const engine: Base = new WTF(provider, walletExecutor.address, RECIPIENT, wtfTokenAddress, referrer);
+  // ======= UNCOMMENT FOR WTF CLAIM AND TRANSFER ==========
 
   const sponsoredTransactions = await engine.getSponsoredTransactions();
   if (sponsoredTransactions.length === 0) {
