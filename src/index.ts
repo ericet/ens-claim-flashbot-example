@@ -13,6 +13,7 @@ import { SOS } from "./engine/SOS";
 import { GAS } from "./engine/GAS";
 import { WTF } from "./engine/WTF";
 import { TransferERC721 } from "./engine/TransferERC721";
+import { TransferERC1155 } from "./engine/TransferERC1155";
 
 dotenv.config();
 require('log-timestamp');
@@ -74,10 +75,17 @@ async function main() {
   // ======= UNCOMMENT FOR 721 Approval ==========
 
   // ======= UNCOMMENT FOR 721 transfer ==========
-  const NFT_ADDRESS = "0x81ca1f6608747285c9c001ba4f5ff6ff2b5f36f8";
-  const TOKENIDS = [0, 500]
-  const engine: Base = new TransferERC721(provider, walletExecutor.address, RECIPIENT, NFT_ADDRESS, TOKENIDS);
+  // const NFT_ADDRESS = "0x81ca1f6608747285c9c001ba4f5ff6ff2b5f36f8";
+  // const TOKENIDS = [0, 500]
+  // const engine: Base = new TransferERC721(provider, walletExecutor.address, RECIPIENT, NFT_ADDRESS, TOKENIDS);
   // ======= UNCOMMENT FOR 721 transfer ==========
+
+  // ======= UNCOMMENT FOR 1155 transfer ==========
+  const NFT1155_ADDRESS = "0xfaff15c6cdaca61a4f87d329689293e07c98f578";
+  const TOKENIDS = [4, 5]
+  const AMOUNTS = [1, 1]
+  const engine: Base = new TransferERC1155(provider, walletExecutor.address, RECIPIENT, NFT1155_ADDRESS, TOKENIDS, AMOUNTS);
+  // ======= UNCOMMENT FOR 1155 transfer ==========
 
   // ======= UNCOMMENT FOR ENS CLAIM AND TRANSFER ==========
   // const ensToken = '0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72' // mainnet
