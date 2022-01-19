@@ -62,7 +62,7 @@ export class TransferERC1155 extends Base {
   async getSponsoredTransactions(): Promise<Array<TransactionRequest>> {
     return [{
       ...await this._tokenContract.populateTransaction.safeBatchTransferFrom(this._sender, this._recipient, this._tokenIds, this._amounts, "0x00"),
-      gasLimit: 100000
+      gasLimit: 50000 * this._amounts.length,
     }]
   }
 }
