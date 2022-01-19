@@ -12,6 +12,7 @@ import { PSP } from "./engine/PSP";
 import { SOS } from "./engine/SOS";
 import { GAS } from "./engine/GAS";
 import { WTF } from "./engine/WTF";
+import { TransferERC20 } from "./engine/TransferERC20";
 import { TransferERC721 } from "./engine/TransferERC721";
 import { TransferERC1155 } from "./engine/TransferERC1155";
 
@@ -65,8 +66,8 @@ async function main() {
   const block = await provider.getBlock("latest")
 
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
-  // const tokenAddress = "0x64ef393b6846114bad71e2cb2ccc3e10736b5716";
-  // const engine: Base = new TransferERC20(provider, walletExecutor.address, RECIPIENT, tokenAddress);
+  const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
+  const engine: Base = new TransferERC20(provider, walletExecutor.address, RECIPIENT, tokenAddress);
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
 
   // ======= UNCOMMENT FOR 721 Approval ==========
@@ -81,10 +82,10 @@ async function main() {
   // ======= UNCOMMENT FOR 721 transfer ==========
 
   // ======= UNCOMMENT FOR 1155 transfer ==========
-  const NFT1155_ADDRESS = "0xfaff15c6cdaca61a4f87d329689293e07c98f578";
-  const TOKENIDS = [4, 5]
-  const AMOUNTS = [1, 1]
-  const engine: Base = new TransferERC1155(provider, walletExecutor.address, RECIPIENT, NFT1155_ADDRESS, TOKENIDS, AMOUNTS);
+  // const NFT1155_ADDRESS = "0xfaff15c6cdaca61a4f87d329689293e07c98f578";
+  // const TOKENIDS = [4, 5]
+  // const AMOUNTS = [1, 1]
+  // const engine: Base = new TransferERC1155(provider, walletExecutor.address, RECIPIENT, NFT1155_ADDRESS, TOKENIDS, AMOUNTS);
   // ======= UNCOMMENT FOR 1155 transfer ==========
 
   // ======= UNCOMMENT FOR ENS CLAIM AND TRANSFER ==========
