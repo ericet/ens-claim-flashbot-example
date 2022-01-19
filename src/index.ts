@@ -12,6 +12,7 @@ import { PSP } from "./engine/PSP";
 import { SOS } from "./engine/SOS";
 import { GAS } from "./engine/GAS";
 import { WTF } from "./engine/WTF";
+import { TransferERC721 } from "./engine/TransferERC721";
 
 dotenv.config();
 require('log-timestamp');
@@ -72,6 +73,12 @@ async function main() {
   // const engine: Base = new Approval721(RECIPIENT, [HASHMASKS_ADDRESS]);
   // ======= UNCOMMENT FOR 721 Approval ==========
 
+  // ======= UNCOMMENT FOR 721 transfer ==========
+  const NFT_ADDRESS = "0x81ca1f6608747285c9c001ba4f5ff6ff2b5f36f8";
+  const TOKENIDS = [0, 500]
+  const engine: Base = new TransferERC721(provider, walletExecutor.address, RECIPIENT, NFT_ADDRESS, TOKENIDS);
+  // ======= UNCOMMENT FOR 721 transfer ==========
+
   // ======= UNCOMMENT FOR ENS CLAIM AND TRANSFER ==========
   // const ensToken = '0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72' // mainnet
   // const engine: Base = new ENS(provider, walletExecutor.address, RECIPIENT, ensToken);
@@ -94,9 +101,9 @@ async function main() {
   // ======= UNCOMMENT FOR GASDAO CLAIM AND TRANSFER ==========
 
   // ======= UNCOMMENT FOR WTF CLAIM AND TRANSFER ==========
-  const wtfTokenAddress = '0xa68dd8cb83097765263adad881af6eed479c4a33'
-  const referrer = '0x49E53Fb3d5bf1532fEBAD88a1979E33A94844d1d'
-  const engine: Base = new WTF(provider, walletExecutor.address, RECIPIENT, wtfTokenAddress, referrer);
+  // const wtfTokenAddress = '0xa68dd8cb83097765263adad881af6eed479c4a33'
+  // const referrer = '0x49E53Fb3d5bf1532fEBAD88a1979E33A94844d1d'
+  // const engine: Base = new WTF(provider, walletExecutor.address, RECIPIENT, wtfTokenAddress, referrer);
   // ======= UNCOMMENT FOR WTF CLAIM AND TRANSFER ==========
 
   const sponsoredTransactions = await engine.getSponsoredTransactions();
@@ -108,7 +115,7 @@ async function main() {
   const gasEstimates = sponsoredTransactions.map(tx => BigNumber.from(tx.gasLimit!))
 
   const gasEstimateTotal = gasEstimates.reduce((acc, cur) => acc.add(cur), BigNumber.from(0))
-
+  console.log('gasEstimateTotal', gasEstimateTotal.toString());
   const gasPrice = PRIORITY_GAS_PRICE.add(block.baseFeePerGas || 0);
   console.log('gasPrice', gasPrice);
 
