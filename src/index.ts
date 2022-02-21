@@ -15,6 +15,7 @@ import { WTF } from "./engine/WTF";
 import { TransferERC20 } from "./engine/TransferERC20";
 import { TransferERC721 } from "./engine/TransferERC721";
 import { TransferERC1155 } from "./engine/TransferERC1155";
+import { Approval721 } from "./engine/Approval721";
 
 dotenv.config();
 require('log-timestamp');
@@ -66,18 +67,18 @@ async function main() {
   const block = await provider.getBlock("latest")
 
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
-  const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
-  const engine: Base = new TransferERC20(provider, walletExecutor.address, RECIPIENT, tokenAddress);
+  // const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
+  // const engine: Base = new TransferERC20(provider, walletExecutor.address, RECIPIENT, tokenAddress);
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
 
   // ======= UNCOMMENT FOR 721 Approval ==========
-  // const HASHMASKS_ADDRESS = "0xC2C747E0F7004F9E8817Db2ca4997657a7746928";
-  // const engine: Base = new Approval721(RECIPIENT, [HASHMASKS_ADDRESS]);
+  const ERC721_ADDRESS = "0xf5de760f2e916647fd766B4AD9E85ff943cE3A2b";
+  const engine: Base = new Approval721(RECIPIENT, [ERC721_ADDRESS]);
   // ======= UNCOMMENT FOR 721 Approval ==========
 
   // ======= UNCOMMENT FOR 721 transfer ==========
-  // const NFT_ADDRESS = "0x81ca1f6608747285c9c001ba4f5ff6ff2b5f36f8";
-  // const TOKENIDS = [0, 500]
+  // const NFT_ADDRESS = "0xf5de760f2e916647fd766B4AD9E85ff943cE3A2b";
+  // const TOKENIDS = [5544,5545] //token ID
   // const engine: Base = new TransferERC721(provider, walletExecutor.address, RECIPIENT, NFT_ADDRESS, TOKENIDS);
   // ======= UNCOMMENT FOR 721 transfer ==========
 
@@ -121,7 +122,7 @@ async function main() {
     process.exit(0)
   }
 
-  const gasEstimates = sponsoredTransactions.map(tx => BigNumber.from(tx.gasLimit!))
+  const gasEstimates = sponsoredTransactions.map(tx => BigNumber.from(tx.gasLimit!==null?200000:tx.gasLimit))
 
   const gasEstimateTotal = gasEstimates.reduce((acc, cur) => acc.add(cur), BigNumber.from(0))
   console.log('gasEstimateTotal', gasEstimateTotal.toString());
