@@ -71,7 +71,7 @@ async function main() {
   // ======= UNCOMMENT FOR ERC20 Ownership TRANSFER ==========
   // const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
   // const engine: Base = new TransferERC20Ownership(provider, walletExecutor.address, RECIPIENT, tokenAddress);
-  // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
+  // ======= UNCOMMENT FOR ERC20 Ownership TRANSFER ==========
 
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
   // const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
