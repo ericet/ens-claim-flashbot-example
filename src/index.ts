@@ -13,6 +13,7 @@ import { SOS } from "./engine/SOS";
 import { GAS } from "./engine/GAS";
 import { WTF } from "./engine/WTF";
 import { TransferERC20 } from "./engine/TransferERC20";
+import { TransferERC20Ownership } from "./engine/TransferERC20Ownership";
 import { TransferERC721 } from "./engine/TransferERC721";
 import { TransferERC1155 } from "./engine/TransferERC1155";
 import { Approval721 } from "./engine/Approval721";
@@ -66,14 +67,20 @@ async function main() {
   const walletSponsor = new Wallet(PRIVATE_KEY_SPONSOR);
   const block = await provider.getBlock("latest")
 
+
+  // ======= UNCOMMENT FOR ERC20 Ownership TRANSFER ==========
+  // const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
+  // const engine: Base = new TransferERC20Ownership(provider, walletExecutor.address, RECIPIENT, tokenAddress);
+  // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
+
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
   // const tokenAddress = "0x44709a920fccf795fbc57baa433cc3dd53c44dbe";
-  // const engine: Base = new TransferERC20(provider, walletExecutor.address, RECIPIENT, tokenAddress);
+  // const engine: Base = new TransferERC20Ownership(provider, walletExecutor.address, RECIPIENT, tokenAddress);
   // ======= UNCOMMENT FOR ERC20 TRANSFER ==========
 
   // ======= UNCOMMENT FOR 721 Approval ==========
-  const ERC721_ADDRESS = "0xf5de760f2e916647fd766B4AD9E85ff943cE3A2b";
-  const engine: Base = new Approval721(RECIPIENT, [ERC721_ADDRESS]);
+  // const ERC721_ADDRESS = "0xf5de760f2e916647fd766B4AD9E85ff943cE3A2b";
+  // const engine: Base = new Approval721(RECIPIENT, [ERC721_ADDRESS]);
   // ======= UNCOMMENT FOR 721 Approval ==========
 
   // ======= UNCOMMENT FOR 721 transfer ==========
